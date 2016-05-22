@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Domain
 {
@@ -14,7 +11,7 @@ namespace Core.Domain
 
         public Address Address { get; set; }
 
-        public IList<Role> Roles { get; set; }
+        public ICollection<Role> Roles { get; set; }
 
         public DateTime CreateTime { get; set; }
 

@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core;
+using Core.Domain;
 
 namespace Data.Mapping
 {
-    public class BaseMap<T> : EntityTypeConfiguration<T> where T : BaseEntity
+    public abstract class BaseMap<T> : EntityTypeConfiguration<T> where T : BaseEntity
     {
-        public BaseMap(string table = "")
+        protected BaseMap(string table = "")
         {
-            this.ToTable(!string.IsNullOrEmpty(table) ? table : typeof (T).Name);
+            string typeName = typeof(T).Name;
+            this.ToTable(!string.IsNullOrEmpty(table) ? table : typeName.Substring(0, typeName.IndexOf("Map", StringComparison.CurrentCulture)));
 
             this.Property(o => o.Timespan).IsRowVersion().HasColumnOrder(100);
             this.Property(o => o.IsDelete).HasColumnOrder(99);
