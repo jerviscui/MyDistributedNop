@@ -28,6 +28,7 @@ namespace Core
         }
         #endregion
 
+        #region Utilities
         /// <summary>
         /// Find and start startup tasks
         /// </summary>
@@ -68,7 +69,7 @@ namespace Core
 
             //set dependency resolve
         }
-
+        #endregion
 
         #region Methods
         /// <summary>
@@ -76,9 +77,9 @@ namespace Core
         /// </summary>
         public void Initialize()
         {
-            RegisterDependencies();
+            this.RegisterDependencies();
 
-            RunStartupTasks();
+            this.RunStartupTasks();
         }
 
         /// <summary>

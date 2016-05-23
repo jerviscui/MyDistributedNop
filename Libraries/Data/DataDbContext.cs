@@ -41,7 +41,7 @@ namespace Data
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
-        public DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity, new()
+        public new DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity, new()
         {
             return base.Set<TEntity>();
         }
@@ -52,7 +52,7 @@ namespace Data
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
+        public new DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
             return base.Entry(entity);
         }
