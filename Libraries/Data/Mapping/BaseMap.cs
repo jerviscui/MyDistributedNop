@@ -16,8 +16,7 @@ namespace Data.Mapping
     {
         protected BaseMap(string table = "")
         {
-            string typeName = typeof(T).Name;
-            this.ToTable(!string.IsNullOrEmpty(table) ? table : typeName.Substring(0, typeName.IndexOf("Map", StringComparison.CurrentCulture)));
+            this.ToTable(!string.IsNullOrEmpty(table) ? table : typeof(T).Name);
 
             this.Property(o => o.Timespan).IsRowVersion().HasColumnOrder(100);
             this.Property(o => o.IsDelete).HasColumnOrder(99);

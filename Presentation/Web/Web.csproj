@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -285,6 +286,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,9 +301,17 @@
       <Project>{7ee82b01-d2b9-489a-8132-12794fcfe5f8}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Service\Service.csproj">
+    <ProjectReference Include="..\..\Libraries\Service\DataService.csproj">
       <Project>{116933a9-1388-4c69-8cc5-23dcbbc26fa0}</Project>
-      <Name>Service</Name>
+      <Name>DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\WebServices\WebServices.Interface\WebServices.Interface.csproj">
+      <Project>{174d66db-8f67-44b2-a71c-be31fe19fb8c}</Project>
+      <Name>WebServices.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\WebServices\WebServices.Proxy\WebServices.Proxy.csproj">
+      <Project>{16aacda6-b1b1-4200-85d7-1dc91dcca541}</Project>
+      <Name>WebServices.Proxy</Name>
     </ProjectReference>
     <ProjectReference Include="..\Web.Framework\Web.Framework.csproj">
       <Project>{65403e57-533b-456d-8a8a-f7f7f910ba27}</Project>

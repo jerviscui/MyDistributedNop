@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Autofac;
 using Core.Infrastructure;
-using Service.Implement;
-using Service.Interface;
+using DataService.Implement;
+using DataService.Interface;
 
 namespace Web.Infrastructure
 {

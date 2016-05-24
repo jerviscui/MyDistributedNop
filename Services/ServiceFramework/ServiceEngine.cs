@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Integration.Wcf;
 using Core;
 using Core.Infrastructure;
+using Data;
 
 namespace ServiceFramework
 {
@@ -31,6 +34,39 @@ namespace ServiceFramework
         protected override void RegisterDependencies()
         {
             base.RegisterDependencies();
+
+            var builder = new ContainerBuilder();
+            var container = builder.Build();
+            this.containerManager = new ContainerManager(container);
+
+            builder = new ContainerBuilder();
+            builder.RegisterInstance(this).As<IEngine>().SingleInstance();
+            var typeFinder = new TypeFinder();
+            builder.RegisterInstance(typeFinder).As<ITypeFinder>().SingleInstance();
+            builder.Update(container);
+
+            //init db provider
+            builder = new ContainerBuilder();
+            builder.RegisterType<DataDbContext>().As<IDbContext>().InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            builder.Update(container);
+
+            builder = new ContainerBuilder();
+            var registerType = typeFinder.FindClassesOfType<IDependencyRegister>();
+            var registers = new List<IDependencyRegister>();
+            foreach (var type in registerType)
+            {
+                registers.Add(Activator.CreateInstance(type) as IDependencyRegister);
+            }
+            registers = registers.Where(o => o != null).OrderBy(o => o.Order).ToList();
+            foreach (var dependencyRegister in registers)
+            {
+                dependencyRegister.Register(builder);
+            }
+            builder.Update(container);
+
+            //set dependency resolve
+            AutofacHostFactory.Container = container;
         }
 
         #region Methods

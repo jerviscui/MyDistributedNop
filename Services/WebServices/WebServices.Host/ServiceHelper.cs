@@ -13,7 +13,7 @@ namespace WebServices.Host
     {
         static ServiceHelper()
         {
-            ServiceContext.Initialize(ServiceFinder.GetServices(ConfigurationManager.OpenExeConfiguration(Assembly.GetEntryAssembly().Location)));
+            ServiceContext.Initialize(ServiceFinder.GetServices(ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)));
         }
 
         public static void Run()

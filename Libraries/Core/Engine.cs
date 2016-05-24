@@ -15,6 +15,10 @@ namespace Core
     public class Engine : IEngine
     {
         #region Fields
+        public event Action OnPreInitialize;
+
+        public event Action OnInitializeComplete;
+
         protected ContainerManager containerManager;
         #endregion
 
@@ -77,9 +81,13 @@ namespace Core
         /// </summary>
         public void Initialize()
         {
+            OnPreInitialize?.Invoke();
+
             this.RegisterDependencies();
 
             this.RunStartupTasks();
+
+            OnInitializeComplete?.Invoke();
         }
 
         /// <summary>

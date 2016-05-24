@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core;
+﻿using Core;
 using Core.Domain;
-using Data;
-using Service.Interface;
+using DataService.Interface;
 
-namespace Service.Implement
+namespace DataService.Implement
 {
     public class UserService : IUserService
     {

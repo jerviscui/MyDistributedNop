@@ -20,7 +20,7 @@ namespace WebServices.Host
             InitializeComponent();
             this.ServiceName = ConfigurationManager.AppSettings["ServiceName"];
 
-            ServiceContext.Initialize(ServiceFinder.GetServices(ConfigurationManager.OpenExeConfiguration(Assembly.GetEntryAssembly().Location)));
+            ServiceContext.Initialize(ServiceFinder.GetServices(ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)));
         }
 
         protected override void OnStart(string[] args)

@@ -32,6 +32,7 @@ namespace Data
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new RoleMap());
             modelBuilder.Configurations.Add(new AddressMap());
+            modelBuilder.Configurations.Add(new TestMap());
 
             base.OnModelCreating(modelBuilder);
         }

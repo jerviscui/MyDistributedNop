@@ -333,9 +333,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Service\Service.csproj">
+    <ProjectReference Include="..\..\Libraries\Service\DataService.csproj">
       <Project>{116933a9-1388-4c69-8cc5-23dcbbc26fa0}</Project>
-      <Name>Service</Name>
+      <Name>DataService</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

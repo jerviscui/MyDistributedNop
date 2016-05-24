@@ -16,6 +16,11 @@ namespace Web.Framework
 {
     public class WebEngine : Engine
     {
+        public WebEngine()
+        {
+            this.OnInitializeComplete += () => { };
+        }
+
         /// <summary>
         /// Register Dependencies
         /// </summary>

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Tools")]
+[assembly: AssemblyTitle("WebServices.Proxy")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Tools")]
+[assembly: AssemblyProduct("WebServices.Proxy")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("db15946c-cd28-437a-b9d9-b21480e31481")]
+[assembly: Guid("16aacda6-b1b1-4200-85d7-1dc91dcca541")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

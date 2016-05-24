@@ -24,7 +24,7 @@ namespace ServiceFramework
         /// <param name="builder"></param>
         public void Register(ContainerBuilder builder)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
