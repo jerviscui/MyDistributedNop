@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.Data
@@ -18,7 +19,7 @@ namespace Core.Data
             InitProperties();
         }
         
-        public PagedList(IQueryable<T> query, int pageIndex, int pageSize)
+        public PagedList(IOrderedQueryable<T> query, int pageIndex, int pageSize)
         {
             this.PageIndex = (uint)pageIndex;
             this.PageSize = (uint)pageSize;

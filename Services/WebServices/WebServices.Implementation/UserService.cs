@@ -36,7 +36,10 @@ namespace WebServices.Implementation
         /// <returns></returns>
         public User GetUserByName(string name)
         {
-            return _userRepository.Table.Include(o => o.Roles).Include(o => o.Address).FirstOrDefault(o => o.UserName.Equals(name));
+            //return _userRepository.Table.Include(o => o.Roles).Include(o => o.Address)
+            //    .FirstOrDefault(o => o.UserName.Equals(name));
+
+            return _userRepository.Table.FirstOrDefault(o => o.UserName.Equals(name));
         }
     }
 }
