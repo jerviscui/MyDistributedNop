@@ -30,7 +30,7 @@ namespace WcfTools
 
         #region Properties
 
-        public IChannel Channel
+        private IChannel Channel
         {
             get { return _channelInstance; }
         }

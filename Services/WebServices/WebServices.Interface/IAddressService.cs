@@ -25,7 +25,7 @@ namespace WebServices.Interface
         /// <param name="pageInfo"></param>
         /// <returns></returns>
         [OperationContract]
-        IPagedList<Address> GetAllAddresses(IPageInfo pageInfo);
+        IPagedList<Address> GetAddressesByPage(IPageInfo pageInfo);
 
         /// <summary>
         /// Get all valid addresses

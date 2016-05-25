@@ -1,7 +1,9 @@
-﻿using Core.Domain;
+﻿using System.ServiceModel;
+using Core.Domain;
 
-namespace DataService.Interface
+namespace WebServices.Interface
 {
+    [ServiceContract]
     public interface IUserService
     {
         /// <summary>
@@ -9,6 +11,7 @@ namespace DataService.Interface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [OperationContract]
         User GetUserById(int id);
 
         /// <summary>
@@ -16,6 +19,7 @@ namespace DataService.Interface
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [OperationContract]
         User GetUserByName(string name);
     }
 }

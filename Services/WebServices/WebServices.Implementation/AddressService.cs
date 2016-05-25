@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core;
 using Core.Data;
 using Core.Domain;
+using Data;
 using WebServices.Interface;
 
 namespace WebServices.Implementation
@@ -25,6 +26,11 @@ namespace WebServices.Implementation
         public AddressService(IRepository<Address> addressRepository)
         {
             _addressRepository = addressRepository;
+        }
+
+        public AddressService()
+        {
+            _addressRepository = new EfRepository<Address>(new DataDbContext());
         }
         #endregion
 
@@ -48,7 +54,7 @@ namespace WebServices.Implementation
         /// </summary>
         /// <param name="pageInfo"></param>
         /// <returns></returns>
-        public IPagedList<Address> GetAllAddresses(IPageInfo pageInfo)
+        public IPagedList<Address> GetAddressesByPage(IPageInfo pageInfo)
         {
             var query = _addressRepository.Table.Where(o => !o.IsDelete);
             

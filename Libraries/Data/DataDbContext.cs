@@ -5,12 +5,14 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core;
 using Core.Domain;
 using Data.Mapping;
+using Data.Migrations;
 
 namespace Data
 {
@@ -21,6 +23,10 @@ namespace Data
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = false;
             //this.Configuration.LazyLoadingEnabled = false;
             //this.Configuration.ProxyCreationEnabled = false;
+
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataDbContext, Configuration>("DefaultConnection"));
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<DataDbContext>());
+            //Database.SetInitializer<DataDbContext>(null);
         }
 
         /// <summary>
@@ -29,10 +35,14 @@ namespace Data
         /// <param name="modelBuilder">定义要创建的上下文的模型的生成器。</param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new UserMap());
-            modelBuilder.Configurations.Add(new RoleMap());
-            modelBuilder.Configurations.Add(new AddressMap());
-            modelBuilder.Configurations.Add(new TestMap());
+            var types = Assembly.GetExecutingAssembly().GetTypes().Where(o =>
+            o.IsClass && o.BaseType != null && o.BaseType.IsGenericType &&
+            o.BaseType.GetGenericTypeDefinition() == typeof(BaseMap<>));
+            foreach (var type in types)
+            {
+                dynamic mapper =  Activator.CreateInstance(type);
+                modelBuilder.Configurations.Add(mapper);
+            }
 
             base.OnModelCreating(modelBuilder);
         }

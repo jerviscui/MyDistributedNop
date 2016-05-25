@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataService.Interface;
-using WebServices.Interface;
 
 namespace Web.Controllers
 {
@@ -23,7 +22,13 @@ namespace Web.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            var user = _userService.GetUserById(0);
+            var user = _userService.GetUserByName("xiaoming");
+            var roles = user.Roles;
+            var address = user.Address;
+            if (user != null)
+            {
+                ViewBag.Name = user.UserName;
+            }
 
             return View();
         }

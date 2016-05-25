@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="AddressServiceProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserServiceProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Libraries\Core\Core.csproj">

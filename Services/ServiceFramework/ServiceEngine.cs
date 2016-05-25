@@ -11,13 +11,21 @@ using Data;
 
 namespace ServiceFramework
 {
-    public class ServiceEngine : Engine
+    public class ServiceEngine : Engine, IServiceEngine
     {
         public ServiceEngine(IEnumerable<Type> serviceTypes)
         {
             ServiceManager = new ServiceManager(serviceTypes);
         }
 
+        public ServiceEngine(IEnumerable<Type> serviceTypes, ServiceManager.ServiceOpendHandler opend)
+        {
+            ServiceManager = new ServiceManager(serviceTypes, opend);
+        }
+
+        /// <summary>
+        /// Services manager
+        /// </summary>
         public ServiceManager ServiceManager { get; }
 
         /// <summary>
@@ -26,6 +34,22 @@ namespace ServiceFramework
         protected override void RunStartupTasks()
         {
             base.RunStartupTasks();
+
+            var typeFinder = Resolve<ITypeFinder>();
+
+            var taskTypes = typeFinder.FindClassesOfType<IStartupTask>();
+            var tasks = new List<IStartupTask>();
+
+            foreach (var taskType in taskTypes)
+            {
+                tasks.Add(Activator.CreateInstance(taskType) as IStartupTask);
+            }
+
+            tasks = tasks.OrderBy(o => o.Order).ToList();
+            foreach (var startupTask in tasks)
+            {
+                startupTask?.Startup();
+            }
         }
 
         /// <summary>

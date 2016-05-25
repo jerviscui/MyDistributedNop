@@ -23,6 +23,11 @@ namespace WebServices.Proxy
             _proxy = proxy;
         }
 
+        public AddressServiceProxy()
+        {
+            _proxy = new ProxyManager().GetProxy<IAddressService>();
+        }
+
         /// <summary>
         /// Add a new address
         /// </summary>
@@ -37,9 +42,9 @@ namespace WebServices.Proxy
         /// </summary>
         /// <param name="pageInfo"></param>
         /// <returns></returns>
-        public IPagedList<Address> GetAllAddresses(IPageInfo pageInfo)
+        public IPagedList<Address> GetAddressesByPage(IPageInfo pageInfo)
         {
-            return _proxy.Client.GetAllAddresses(pageInfo);
+            return _proxy.Client.GetAddressesByPage(pageInfo);
         }
 
         /// <summary>

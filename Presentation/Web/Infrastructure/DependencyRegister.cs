@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Autofac;
+using Autofac.Integration.Mvc;
 using Core.Infrastructure;
 using DataService.Implement;
 using DataService.Interface;
@@ -28,6 +30,8 @@ namespace Web.Infrastructure
         public void Register(ContainerBuilder builder)
         {
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+
+            builder.RegisterControllers(Assembly.GetAssembly(typeof (MvcApplication)));
         }
     }
 }

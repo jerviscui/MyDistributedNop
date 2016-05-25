@@ -13,12 +13,16 @@ namespace WebServices.Host
     {
         static ServiceHelper()
         {
-            ServiceContext.Initialize(ServiceFinder.GetServices(ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)));
+            ServiceContext.Initialize(ServiceFinder.GetServices(ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location)),
+                (host, args) =>
+                {
+                    Console.WriteLine("服务{0}启动", host.Description.Name);
+                });
         }
 
         public static void Run()
         {
-            ServiceContext.Current.StopAllServices();
+            ServiceContext.Current.StartAllServices();
         }
 
         public static void Stop()

@@ -45,7 +45,7 @@ namespace Web.Framework
             builder.Update(container);
 
             builder = new ContainerBuilder();
-            var registerType = typeFinder.FindClassesOfType<IDependencyRegister>();
+            var registerType = typeFinder.FindClassesOfType<IDependencyRegister>(new string[] { "Web" });
             var registers = new List<IDependencyRegister>();
             foreach (var type in registerType)
             {
@@ -56,8 +56,6 @@ namespace Web.Framework
             {
                 dependencyRegister.Register(builder);
             }
-
-            builder.RegisterControllers(Assembly.Load("Web"));
 
             builder.Update(container);
 
@@ -73,6 +71,7 @@ namespace Web.Framework
             base.RunStartupTasks();
 
             var typeFinder = Resolve<ITypeFinder>();
+
             var taskTypes = typeFinder.FindClassesOfType<IStartupTask>();
             var tasks = new List<IStartupTask>();
 

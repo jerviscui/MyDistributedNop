@@ -30,7 +30,19 @@ namespace ServiceFramework
                 var element = service as ServiceElement;
                 if (element != null)
                 {
-                    var type = Type.GetType(element.Name);
+                    Type type = null;
+                    try
+                    {
+                        type = Type.GetType(element.Name + "," + element.Name.Substring(0, element.Name.LastIndexOf(".", StringComparison.CurrentCulture)));
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    if (type == null)
+                    {
+                        throw new ConfigurationErrorsException("Type is not define");
+                    }
                     types.Add(type);
                 }
             }

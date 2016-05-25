@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using Core.Infrastructure;
 
-namespace Core.Infrastructure
+namespace Web.Infrastructure
 {
-    public interface IStartupTask
+    public class StartupTask : IStartupTask
     {
         /// <summary>
         /// 0 is the first startup task
         /// </summary>
-        int Order { get; }
+        public int Order { get { return 2; } }
 
         /// <summary>
         /// 
         /// </summary>
-        void Startup();
+        public void Startup()
+        {
+            
+        }
     }
 }

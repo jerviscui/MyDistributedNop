@@ -9,6 +9,10 @@ namespace Core.Infrastructure
 {
     public class ServiceManager
     {
+        public delegate void ServiceOpendHandler(ServiceHost host, EventArgs e);
+
+        public event ServiceOpendHandler Opend;
+
         private readonly IDictionary<Type, ServiceHost> _allServiceHosts;
 
         public IDictionary<Type, ServiceHost> ServiceHosts
@@ -19,7 +23,7 @@ namespace Core.Infrastructure
             }
         }
 
-        public ServiceManager(IEnumerable<Type> serviceTypes) : base()
+        public ServiceManager(IEnumerable<Type> serviceTypes)
         {
             if (serviceTypes == null)
             {
@@ -40,6 +44,11 @@ namespace Core.Infrastructure
             }
         }
 
+        public ServiceManager(IEnumerable<Type> serviceTypes, ServiceOpendHandler opend) : this(serviceTypes)
+        {
+            Opend += opend;
+        }
+
         /// <summary>
         /// Start all register services
         /// </summary>
@@ -47,6 +56,10 @@ namespace Core.Infrastructure
         {
             foreach (var allServiceHost in _allServiceHosts)
             {
+                if (Opend != null)
+                {
+                    allServiceHost.Value.Opened += (sender, args) => { Opend((ServiceHost)sender, args); };
+                }
                 allServiceHost.Value.Open();
             }
         }

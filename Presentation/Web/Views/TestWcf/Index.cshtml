@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Test Wcf</h2>
+
+@foreach (var address in (IEnumerable<string>)ViewBag.Addresses)
+{
+    <h2>City: @address</h2>
+}

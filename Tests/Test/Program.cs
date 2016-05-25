@@ -11,7 +11,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var aaa = new TestMap();
+            //var aaa = new TestMap();
         }
     }
 }

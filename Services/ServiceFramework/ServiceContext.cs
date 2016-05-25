@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
+using Core.Infrastructure;
 
 namespace ServiceFramework
 {
@@ -13,20 +14,20 @@ namespace ServiceFramework
         /// Engine context initialize
         /// </summary>
         /// <returns></returns>
-        public static IServiceEngine Initialize(IEnumerable<Type> serviceTypes)
+        public static IServiceEngine Initialize(IEnumerable<Type> serviceTypes, ServiceManager.ServiceOpendHandler opend = null)
         {
             if (EngineContext.Current is Engine)
             {
-                var engine = new ServiceEngine(serviceTypes);
+                var engine = opend == null ? new ServiceEngine(serviceTypes) : new ServiceEngine(serviceTypes, opend);
                 engine.Initialize();
                 EngineContext.Replace(engine);
             }
-            else if (EngineContext.Current is IServiceEngine)
+            else if (!(EngineContext.Current is IServiceEngine))
             {
-                return Singleton<IEngine>.Instance as IServiceEngine;
+                throw new ServiceContextException(); 
             }
 
-            throw new ServiceContextException();
+            return Singleton<IEngine>.Instance as IServiceEngine;
         }
 
         /// <summary>

@@ -81,15 +81,10 @@
     <Compile Include="Mapping\AddressMap.cs" />
     <Compile Include="Mapping\BaseMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
-    <Compile Include="Mapping\TestMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Migrations\201605240848571_InitDatabase.cs" />
     <Compile Include="Migrations\201605240848571_InitDatabase.Designer.cs">
       <DependentUpon>201605240848571_InitDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605240958349_test.cs" />
-    <Compile Include="Migrations\201605240958349_test.Designer.cs">
-      <DependentUpon>201605240958349_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,9 +102,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201605240848571_InitDatabase.resx">
       <DependentUpon>201605240848571_InitDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605240958349_test.resx">
-      <DependentUpon>201605240958349_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

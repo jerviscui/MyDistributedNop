@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Core.Data
 {
+    [DataContract]
     public class PageInfo : IPageInfo
     {
         #region Fields
@@ -22,8 +24,8 @@ namespace Core.Data
         /// </summary>
         public PageInfo(int pageIndex, int pageSize)
         {
-            _pageIndex = pageIndex;
-            _pageSize = pageSize;
+            PageIndex = pageIndex;
+            PageSize = pageSize;
         }
         #endregion
 
@@ -31,6 +33,7 @@ namespace Core.Data
         /// <summary>
         /// Starting from 0
         /// </summary>
+        [DataMember]
         public int PageIndex
         {
             get
@@ -50,6 +53,7 @@ namespace Core.Data
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public int PageSize
         {
             get

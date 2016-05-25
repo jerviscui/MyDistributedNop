@@ -9,9 +9,9 @@ namespace Core.Domain
 
         public int AddressId { get; set; }
 
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
 
-        public ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
 
         public DateTime CreateTime { get; set; }
 

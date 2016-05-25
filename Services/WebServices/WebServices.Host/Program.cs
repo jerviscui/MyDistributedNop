@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Infrastructure;
 
 namespace WebServices.Host
 {
@@ -19,7 +20,7 @@ namespace WebServices.Host
                         break;
                     case "u":
                         break;
-                    default:
+                    case "t":
                         OnStart += ServiceHelper.Run;
                         OnStop += ServiceHelper.Stop;
                         OnStart?.Invoke();
@@ -27,6 +28,8 @@ namespace WebServices.Host
                         Console.WriteLine("Enter any key to stop.");
                         Console.ReadLine();
                         OnStop?.Invoke();
+                        break;
+                    default:
                         break;
                 }
             }
