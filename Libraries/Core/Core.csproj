@@ -73,7 +73,9 @@
   <ItemGroup>
     <Compile Include="Configuration\CoreConfiguration.cs" />
     <Compile Include="Data\IPageInfo.cs" />
+    <Compile Include="Data\ISerializedPage.cs" />
     <Compile Include="Data\PageInfo.cs" />
+    <Compile Include="Data\SerializedPage.cs" />
     <Compile Include="Domain\Address.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Data\IPagedList.cs" />

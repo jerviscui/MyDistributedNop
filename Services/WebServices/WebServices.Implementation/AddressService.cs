@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
@@ -54,12 +57,14 @@ namespace WebServices.Implementation
         /// </summary>
         /// <param name="pageInfo"></param>
         /// <returns></returns>
-        public IPagedList<Address> GetAddressesByPage(PageInfo pageInfo)
+        public ISerializedPage<Address> GetAddressesByPage(PageInfo pageInfo)
         {
             var query = _addressRepository.Table.Where(o => !o.IsDelete);
             var ordered = query.OrderBy(o => o.Id);
 
-            return new PagedList<Address>(ordered, pageInfo.PageIndex, pageInfo.PageSize);
+            var list = new SerializedPage<Address>(ordered, pageInfo.PageIndex, pageInfo.PageSize);
+            
+            return list;
         }
 
         /// <summary>

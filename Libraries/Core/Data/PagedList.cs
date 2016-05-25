@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Core.Data
 {
     public class PagedList<T> : List<T>, IPagedList<T> where T : class, new()
     {
         #region Ctor
-
+        
         public PagedList(IEnumerable<T> list, uint pageIndex, uint pageSize, uint total)
         {
             this.AddRange(list);
