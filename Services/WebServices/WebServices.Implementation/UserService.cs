@@ -43,23 +43,19 @@ namespace WebServices.Implementation
             //return _userRepository.Table.Include(o => o.Roles).Include(o => o.Address)
             //    .FirstOrDefault(o => o.UserName.Equals(name));
 
-            Console.WriteLine("get user");
-
             var user = _userRepository.Table.FirstOrDefault(o => o.UserName.Equals(name));
 
-            Console.WriteLine("get user");
-
-            if (user != null)
-            {
-                var serializer = new DataContractSerializer(typeof(User),
-                    new DataContractSerializerSettings() { DataContractResolver = new ProxyDataContractResolver() });
-                using (var stream = new MemoryStream())
-                {
-                    serializer.WriteObject(stream, user);
-                    stream.Seek(0, SeekOrigin.Begin);
-                    user = serializer.ReadObject(stream) as User;
-                }
-            }
+            //if (user != null)
+            //{
+            //    var serializer = new DataContractSerializer(typeof(User),
+            //        new DataContractSerializerSettings() { DataContractResolver = new ProxyDataContractResolver() });
+            //    using (var stream = new MemoryStream())
+            //    {
+            //        serializer.WriteObject(stream, user);
+            //        stream.Seek(0, SeekOrigin.Begin);
+            //        user = serializer.ReadObject(stream) as User;
+            //    }
+            //}
 
             return user;
         }

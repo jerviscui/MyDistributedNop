@@ -25,7 +25,7 @@ namespace WebServices.Interface
         /// <param name="pageInfo"></param>
         /// <returns></returns>
         [OperationContract]
-        ISerializedPage<Address> GetAddressesByPage(PageInfo pageInfo);
+        SerializedPage<Address> GetAddressesByPage(PageInfo pageInfo);
 
         /// <summary>
         /// Get all valid addresses

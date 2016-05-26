@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using Core.Domain;
+using ServiceFramework;
 
 namespace WebServices.Interface
 {
@@ -12,6 +13,8 @@ namespace WebServices.Interface
         /// <param name="id"></param>
         /// <returns></returns>
         [OperationContract]
+        [ApplyProxyDataContractResolver]
+        
         User GetUserById(int id);
 
         /// <summary>
@@ -20,6 +23,7 @@ namespace WebServices.Interface
         /// <param name="name"></param>
         /// <returns></returns>
         [OperationContract]
+        [ApplyProxyDataContractResolver]
         User GetUserByName(string name);
     }
 }

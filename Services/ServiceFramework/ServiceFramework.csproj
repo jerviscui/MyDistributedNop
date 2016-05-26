@@ -69,6 +69,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Xml.Linq" />
@@ -79,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplyProxyDataContractResolverAttribute.cs" />
     <Compile Include="IServiceEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContext.cs" />

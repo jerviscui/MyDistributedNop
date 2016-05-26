@@ -42,7 +42,7 @@ namespace WebServices.Proxy
         /// </summary>
         /// <param name="pageInfo"></param>
         /// <returns></returns>
-        public ISerializedPage<Address> GetAddressesByPage(PageInfo pageInfo)
+        public SerializedPage<Address> GetAddressesByPage(PageInfo pageInfo)
         {
             return _proxy.Client.GetAddressesByPage(pageInfo);
         }

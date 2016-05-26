@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Data
 {
-    public interface ISerializedPage<T> : IEnumerable<T> where T : class, new()
+    public interface ISerializedPage<T> where T : class, new()
     {
         /// <summary>
         /// Data collection

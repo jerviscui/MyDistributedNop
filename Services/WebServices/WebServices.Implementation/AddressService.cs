@@ -57,14 +57,12 @@ namespace WebServices.Implementation
         /// </summary>
         /// <param name="pageInfo"></param>
         /// <returns></returns>
-        public ISerializedPage<Address> GetAddressesByPage(PageInfo pageInfo)
+        public SerializedPage<Address> GetAddressesByPage(PageInfo pageInfo)
         {
             var query = _addressRepository.Table.Where(o => !o.IsDelete);
             var ordered = query.OrderBy(o => o.Id);
 
-            var list = new SerializedPage<Address>(ordered, pageInfo.PageIndex, pageInfo.PageSize);
-            
-            return list;
+            return new SerializedPage<Address>(ordered, pageInfo.PageIndex, pageInfo.PageSize);
         }
 
         /// <summary>

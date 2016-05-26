@@ -9,24 +9,14 @@ using System.Threading.Tasks;
 namespace Core.Data
 {
     [Serializable]
-    [CollectionDataContract]
+    [DataContract]
     public class SerializedPage<T> : ISerializedPage<T> where T : class, new()
     {
-        #region Fields
-
-        private List<T> _dataList;
-        #endregion
-
         #region Ctor
-
-        public SerializedPage()
+        
+        public SerializedPage(IEnumerable<T> list, uint pageIndex, uint pageSize, uint total)
         {
-            _dataList = new List<T>();
-        }
-
-        public SerializedPage(IEnumerable<T> list, uint pageIndex, uint pageSize, uint total) : this()
-        {
-            _dataList.AddRange(list);
+            Datas = list.ToList();
 
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
@@ -35,14 +25,14 @@ namespace Core.Data
             InitProperties();
         }
 
-        public SerializedPage(IOrderedQueryable<T> query, int pageIndex, int pageSize): this()
+        public SerializedPage(IOrderedQueryable<T> query, int pageIndex, int pageSize)
         {
             this.PageIndex = (uint)pageIndex;
             this.PageSize = (uint)pageSize;
             this.TotalCount = (uint)query.Count();
 
             var list = query.Skip(pageIndex * pageSize).Take(pageSize).ToList();
-            _dataList.AddRange(list);
+            Datas = list;
 
             InitProperties();
         }
@@ -64,13 +54,7 @@ namespace Core.Data
         /// Data collection
         /// </summary>
         [DataMember]
-        public IList<T> Datas
-        {
-            get
-            {
-                return _dataList;
-            }
-        }
+        public IList<T> Datas { get; set; }
 
         /// <summary>
         /// Index starting from 0
@@ -108,24 +92,5 @@ namespace Core.Data
         [DataMember]
         public bool HasPrevpage { get; set; }
         #endregion
-
-        public void Add(T item)
-        {
-            _dataList.Add(item);
-        }
-
-        /// <summary>Returns an enumerator that iterates through the collection.</summary>
-        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Datas.GetEnumerator();
-        }
-
-        /// <summary>Returns an enumerator that iterates through a collection.</summary>
-        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
     }
 }

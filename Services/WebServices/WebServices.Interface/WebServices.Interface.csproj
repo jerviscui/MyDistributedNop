@@ -69,6 +69,10 @@
       <Project>{7ee82b01-d2b9-489a-8132-12794fcfe5f8}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ServiceFramework\ServiceFramework.csproj">
+      <Project>{CBC9AE0B-8974-4EAB-A17C-F6D579117BD1}</Project>
+      <Name>ServiceFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
