@@ -60,7 +60,9 @@ namespace Data
         /// <returns>Entity</returns>
         public T GetById(object id)
         {
-            return this.Entities.Find(id);
+            //use SingleOrDefault for without DetectChanges()
+            return this.Entities.SingleOrDefault(o => o.Id == (int)id);
+            //return this.Entities.Find(id);
         }
 
         /// <summary>

@@ -10,11 +10,14 @@ namespace Web.Controllers
     {
         private readonly IAddressService _addressService;
         private readonly IUserService _userService;
-
-        public TestWcfController()
+        
+        /// <summary>
+        /// 初始化 <see cref="T:System.Web.Mvc.Controller"/> 类的新实例。
+        /// </summary>
+        public TestWcfController(IAddressService addressService, IUserService userService)
         {
-            _addressService = new AddressServiceProxy();
-            _userService = new UserServiceProxy();
+            _addressService = addressService;
+            _userService = userService;
         }
 
         // GET: TestWcf

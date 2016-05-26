@@ -33,9 +33,18 @@ namespace Core
             get { return Singleton<IEngine>.Instance ?? Initialize(); }
         }
 
-        public static void Replace(IEngine engine)
+        /// <summary>
+        /// Replace current engine
+        /// </summary>
+        /// <param name="engine"></param>
+        /// <param name="isIinit"></param>
+        public static void Replace(IEngine engine, bool isIinit = false)
         {
             Singleton<IEngine>.Instance = engine;
+            if (isIinit)
+            {
+                engine.Initialize();
+            }
         }
     }
 }

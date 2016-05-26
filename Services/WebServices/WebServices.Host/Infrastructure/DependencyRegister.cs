@@ -27,6 +27,7 @@ namespace WebServices.Host.Infrastructure
         public void Register(ContainerBuilder builder)
         {
             builder.RegisterType<AddressService>().As<IAddressService>();
+            builder.RegisterType<UserService>().As<IUserService>();
         }
     }
 }

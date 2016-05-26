@@ -20,9 +20,7 @@ namespace Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             EngineContext.Initialize();
-            var engine = new WebEngine();
-            engine.Initialize();
-            EngineContext.Replace(engine);
+            EngineContext.Replace(new WebEngine(), true);
         }
     }
 }

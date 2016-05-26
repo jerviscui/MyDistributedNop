@@ -16,11 +16,13 @@ namespace ServiceFramework
         public ServiceEngine(IEnumerable<Type> serviceTypes)
         {
             ServiceManager = new ServiceManager(serviceTypes);
+            OnInitializeComplete += ServiceManager.InitForDependencyRegister;
         }
 
         public ServiceEngine(IEnumerable<Type> serviceTypes, ServiceManager.ServiceOpendHandler opend)
         {
             ServiceManager = new ServiceManager(serviceTypes, opend);
+            OnInitializeComplete += ServiceManager.InitForDependencyRegister;
         }
 
         /// <summary>

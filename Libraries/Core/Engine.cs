@@ -17,7 +17,7 @@ namespace Core
         #region Fields
         public event Action OnPreInitialize;
 
-        public event Action OnInitializeComplete;
+        public event Action<IEngine> OnInitializeComplete;
 
         protected ContainerManager containerManager;
         #endregion
@@ -87,7 +87,7 @@ namespace Core
 
             this.RunStartupTasks();
 
-            OnInitializeComplete?.Invoke();
+            OnInitializeComplete?.Invoke(this);
         }
 
         /// <summary>

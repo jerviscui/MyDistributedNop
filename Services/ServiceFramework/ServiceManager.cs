@@ -4,6 +4,8 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac.Integration.Wcf;
+using ServiceFramework;
 
 namespace Core.Infrastructure
 {
@@ -23,6 +25,7 @@ namespace Core.Infrastructure
             }
         }
 
+        #region Ctor
         public ServiceManager(IEnumerable<Type> serviceTypes)
         {
             if (serviceTypes == null)
@@ -47,6 +50,27 @@ namespace Core.Infrastructure
         public ServiceManager(IEnumerable<Type> serviceTypes, ServiceOpendHandler opend) : this(serviceTypes)
         {
             Opend += opend;
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Use Dependency Registration for <see cref="System.ServiceModel.ServiceHost"/> 
+        /// </summary>
+        public void InitForDependencyRegister(IEngine engine)
+        {
+            foreach (var allServiceHost in _allServiceHosts)
+            {
+                var serviceType = allServiceHost.Key;
+                Type interfaceType = serviceType.GetInterface("I" + serviceType.Name);
+                //can also do like this
+                //interfaceType = allServiceHost.Key.GetInterfaces()[0];
+
+                allServiceHost.Value.AddDependencyInjectionBehavior(interfaceType, engine.ContainerManager.Container);
+
+                //now, first replace engine then execute engine init, so can do like this
+                //allServiceHost.Value.AddDependencyInjectionBehavior(interfaceType, ServiceContext.Current.ContainerManager.Container);
+            }
         }
 
         /// <summary>
@@ -74,5 +98,6 @@ namespace Core.Infrastructure
                 allServiceHost.Value.Close();
             }
         }
+        #endregion
     }
 }

@@ -127,6 +127,10 @@
       <Project>{574686d6-d270-4a30-b638-ddcad968704b}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\WcfTools\WcfTools.csproj">
+      <Project>{CD72F0B0-A599-40C9-BBA4-5238603A6586}</Project>
+      <Name>WcfTools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -56,7 +56,7 @@ namespace WcfTools
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public Proxy<T> GetProxy<T>() where T : class 
+        public Proxy<T> GetProxy<T>() where T : class
         {
             if (Proxies == null)
             {
@@ -64,7 +64,7 @@ namespace WcfTools
             }
 
             object proxy;
-            var type = typeof (T);
+            var type = typeof(T);
             if (Proxies.ContainsKey(type))
             {
                 proxy = Proxies[type];
@@ -78,7 +78,7 @@ namespace WcfTools
             var returnProxy = proxy as Proxy<T>;
             if (returnProxy == null)
             {
-                throw new Exception("Proxy init failed."); 
+                throw new Exception("Proxy init failed.");
             }
 
             returnProxy.Open();

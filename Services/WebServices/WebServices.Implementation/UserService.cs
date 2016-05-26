@@ -23,11 +23,6 @@ namespace WebServices.Implementation
             _userRepository = userRepository;
         }
 
-        public UserService()
-        {
-            _userRepository = new EfRepository<User>(new DataDbContext());
-        }
-
         public User GetUserById(int id)
         {
             return _userRepository.GetById(id);
@@ -45,6 +40,10 @@ namespace WebServices.Implementation
 
             var user = _userRepository.Table.FirstOrDefault(o => o.UserName.Equals(name));
 
+            Console.WriteLine("get user");
+
+            //when WCF do this for EF proxy Navigation Property
+            //or use ApplyProxyDataContractResolver attribute on interface
             //if (user != null)
             //{
             //    var serializer = new DataContractSerializer(typeof(User),

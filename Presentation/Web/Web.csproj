@@ -52,6 +52,10 @@
       <HintPath>..\..\Solution\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac.Integration.Wcf, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\Solution\packages\Autofac.Wcf.4.0.0\lib\net45\Autofac.Integration.Wcf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\Solution\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -92,6 +96,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -313,6 +318,10 @@
     <ProjectReference Include="..\..\Libraries\Service\DataService.csproj">
       <Project>{116933a9-1388-4c69-8cc5-23dcbbc26fa0}</Project>
       <Name>DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\WcfTools\WcfTools.csproj">
+      <Project>{CD72F0B0-A599-40C9-BBA4-5238603A6586}</Project>
+      <Name>WcfTools</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\WebServices\WebServices.Interface\WebServices.Interface.csproj">
       <Project>{174d66db-8f67-44b2-a71c-be31fe19fb8c}</Project>

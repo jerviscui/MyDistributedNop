@@ -11,6 +11,7 @@ using Autofac.Integration.Mvc;
 using Core;
 using Core.Infrastructure;
 using Data;
+using WcfTools;
 
 namespace Web.Framework
 {
@@ -18,9 +19,13 @@ namespace Web.Framework
     {
         public WebEngine()
         {
-            this.OnInitializeComplete += () => { };
+            ChannelFactoryManager = new ChannelFactoryManager();
+            this.OnInitializeComplete += engine => { };
         }
 
+        public ChannelFactoryManager ChannelFactoryManager { get; }
+
+        #region Ulitities
         /// <summary>
         /// Register Dependencies
         /// </summary>
@@ -86,5 +91,6 @@ namespace Web.Framework
                 startupTask?.Startup();
             }
         }
+        #endregion
     }
 }

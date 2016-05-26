@@ -23,11 +23,6 @@ namespace WebServices.Proxy
             _proxy = proxy;
         }
 
-        public AddressServiceProxy()
-        {
-            _proxy = new ProxyManager().GetProxy<IAddressService>();
-        }
-
         /// <summary>
         /// Add a new address
         /// </summary>

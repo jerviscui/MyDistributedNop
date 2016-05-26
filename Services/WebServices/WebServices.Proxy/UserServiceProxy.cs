@@ -16,10 +16,12 @@ namespace WebServices.Proxy
         #endregion
 
         #region Ctor
-
-        public UserServiceProxy()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+        /// </summary>
+        public UserServiceProxy(Proxy<IUserService> proxy)
         {
-            _proxy = new ProxyManager().GetProxy<IUserService>();
+            _proxy = proxy;
         }
         #endregion
 
