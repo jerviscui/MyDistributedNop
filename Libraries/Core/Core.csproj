@@ -87,7 +87,9 @@
     <Compile Include="Engine.cs" />
     <Compile Include="EngineContext.cs" />
     <Compile Include="Configuration\IConfigurationFinder.cs" />
+    <Compile Include="ICacheManager.cs" />
     <Compile Include="IEngine.cs" />
+    <Compile Include="ILogManager.cs" />
     <Compile Include="Infrastructure\ContainerManager.cs" />
     <Compile Include="Infrastructure\IDependencyRegister.cs" />
     <Compile Include="Infrastructure\IStartupTask.cs" />
