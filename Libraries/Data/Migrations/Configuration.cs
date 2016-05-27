@@ -48,7 +48,9 @@ namespace Data.Migrations
                 UserName = "xiaoming"
             };
 
-            context.Set<User>().AddOrUpdate(o => o.UserName, user);
+            context.Set<Address>().AddOrUpdate(o => o.Code, user.Address);
+            context.Set<Role>().AddOrUpdate(o => o.RoleName, user.Roles.ToArray());
+            context.Set<User>().AddOrUpdate(o => new { o.UserName }, user);
         }
     }
 }

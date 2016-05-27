@@ -45,6 +45,17 @@ namespace WebServices.Proxy
         {
             return _proxy.Client.GetUserByName(name);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Task<User> GetUserByNameAsync(string name)
+        {
+            return _proxy.Client.GetUserByNameAsync(name);
+        }
+
         #endregion
     }
 }

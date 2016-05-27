@@ -50,5 +50,14 @@ namespace WebServices.Proxy
         {
             return _proxy.Client.GetAllAddresses();
         }
+
+        /// <summary>
+        /// Get all valid addresses
+        /// </summary>
+        /// <returns></returns>
+        public Task<IList<Address>> GetAllAddressesAsync()
+        {
+            return _proxy.Client.GetAllAddressesAsync();
+        }
     }
 }

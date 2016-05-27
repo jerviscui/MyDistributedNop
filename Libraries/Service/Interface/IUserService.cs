@@ -1,4 +1,5 @@
-﻿using Core.Domain;
+﻿using System.Threading.Tasks;
+using Core.Domain;
 
 namespace DataService.Interface
 {
@@ -17,5 +18,12 @@ namespace DataService.Interface
         /// <param name="name"></param>
         /// <returns></returns>
         User GetUserByName(string name);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<User> GetUserByNameAsync(string name);
     }
 }

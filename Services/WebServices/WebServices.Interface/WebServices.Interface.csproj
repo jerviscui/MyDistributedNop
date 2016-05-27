@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICustomerService.cs" />
     <Compile Include="IAddressService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -31,7 +31,14 @@ namespace WebServices.Interface
         /// Get all valid addresses
         /// </summary>
         /// <returns></returns>
-        [OperationContract]
+        [OperationContract(Name = "GetAllAddresses")]
         IList<Address> GetAllAddresses();
+
+        /// <summary>
+        /// Get all valid addresses
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract(Name = "GetAllAddressesAsync")]
+        Task<IList<Address>> GetAllAddressesAsync();
     }
 }

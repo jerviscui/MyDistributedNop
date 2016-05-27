@@ -14,7 +14,7 @@ namespace Data
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity, new()
     {
-        private readonly IDbContext _dbContext;
+        protected readonly IDbContext DbContext;
         private DbSet<T> _entities;
 
         /// <summary>
@@ -22,14 +22,14 @@ namespace Data
         /// </summary>
         public EfRepository(IDbContext dbContext)
         {
-            _dbContext = dbContext;
+            DbContext = dbContext;
         }
 
         protected DbSet<T> Entities
         {
             get
             {
-                return _entities ?? (_entities = _dbContext.Set<T>());
+                return _entities ?? (_entities = DbContext.Set<T>());
             }
         }
 
@@ -79,7 +79,7 @@ namespace Data
             try
             {
                 this.Entities.Add(entity);
-                this._dbContext.SaveChanges();
+                this.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -125,7 +125,7 @@ namespace Data
                 //explain.3 DbSet.AddRange() by EF 6.0
                 this.Entities.AddRange(entities);
 
-                this._dbContext.SaveChanges();
+                this.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -146,9 +146,9 @@ namespace Data
 
             try
             {
-                this._dbContext.Entry(entity).State = EntityState.Modified;
+                this.DbContext.Entry(entity).State = EntityState.Modified;
 
-                this._dbContext.SaveChanges();
+                this.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -156,8 +156,8 @@ namespace Data
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ((IObjectContextAdapter)this._dbContext).ObjectContext.Refresh(RefreshMode.ClientWins, ex.Entries);
-                this._dbContext.SaveChanges();
+                ((IObjectContextAdapter)this.DbContext).ObjectContext.Refresh(RefreshMode.ClientWins, ex.Entries);
+                this.DbContext.SaveChanges();
             }
         }
 
@@ -176,10 +176,10 @@ namespace Data
             {
                 foreach (var entity in entities)
                 {
-                    this._dbContext.Entry(entity).State = EntityState.Modified;
+                    this.DbContext.Entry(entity).State = EntityState.Modified;
                 }
 
-                this._dbContext.SaveChanges();
+                this.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -187,8 +187,8 @@ namespace Data
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                ((IObjectContextAdapter)this._dbContext).ObjectContext.Refresh(RefreshMode.ClientWins, ex.Entries);
-                this._dbContext.SaveChanges();
+                ((IObjectContextAdapter)this.DbContext).ObjectContext.Refresh(RefreshMode.ClientWins, ex.Entries);
+                this.DbContext.SaveChanges();
             }
         }
 
@@ -207,7 +207,7 @@ namespace Data
             {
                 this.Entities.Remove(entity);
 
-                this._dbContext.SaveChanges();
+                this.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
@@ -230,7 +230,7 @@ namespace Data
             {
                 this.Entities.RemoveRange(entities);
 
-                this._dbContext.SaveChanges();
+                this.DbContext.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {

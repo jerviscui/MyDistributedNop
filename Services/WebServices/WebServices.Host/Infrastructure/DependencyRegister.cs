@@ -28,6 +28,7 @@ namespace WebServices.Host.Infrastructure
         {
             builder.RegisterType<AddressService>().As<IAddressService>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<CustomerService>().As<ICustomerService>();
         }
     }
 }

@@ -36,6 +36,12 @@ namespace Data
         int SaveChanges();
 
         /// <summary>
+        /// Save changes by asnyc
+        /// </summary>
+        /// <returns></returns>
+        Task<int> SaveChangesAsync();
+
+        /// <summary>
         /// Get the ObjectContextAdapter configuration
         /// </summary>
         DbContextConfiguration Configuration { get; }

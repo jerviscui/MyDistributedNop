@@ -5,10 +5,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Core;
+using Core.Data;
 using Core.Infrastructure;
 using Data;
 using WcfTools;
@@ -38,9 +41,14 @@ namespace Web.Framework
             this.containerManager = new ContainerManager(container);
 
             builder = new ContainerBuilder();
+            builder.Register(context => new HttpContextWrapper(HttpContext.Current) as HttpContextBase)
+                .As<HttpContextBase>().InstancePerLifetimeScope();
+
             builder.RegisterInstance(this).As<IEngine>().SingleInstance();
             var typeFinder = new TypeFinder();
             builder.RegisterInstance(typeFinder).As<ITypeFinder>().SingleInstance();
+
+            builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
             builder.Update(container);
 
             //init db provider

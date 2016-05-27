@@ -210,6 +210,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseAsyncController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TestAsyncController.cs" />
@@ -301,9 +303,12 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\TestWcf\Index.cshtml" />
     <Content Include="Views\TestAsync\Index.cshtml" />
+    <Content Include="Views\TestAsync\AsyncWcf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BaseAsync\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

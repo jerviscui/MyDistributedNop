@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Core;
 using Core.Data;
@@ -74,6 +76,20 @@ namespace WebServices.Implementation
 
             return query.ToList();
         }
+
+        /// <summary>
+        /// Get all valid addresses
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IList<Address>> GetAllAddressesAsync()
+        {
+            Console.WriteLine("GetAllAddressesAsync thread: " + Thread.CurrentThread.ManagedThreadId);
+            var query = await _addressRepository.Table.Where(o => !o.IsDelete).ToListAsync();
+            
+            Console.WriteLine("GetAllAddressesAsync return thread: " + Thread.CurrentThread.ManagedThreadId);
+            return query;
+        }
+
         #endregion
     }
 }

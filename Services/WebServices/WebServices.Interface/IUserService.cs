@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using System.Threading.Tasks;
 using Core.Domain;
 using ServiceFramework;
 
@@ -25,5 +26,14 @@ namespace WebServices.Interface
         [OperationContract]
         [ApplyProxyDataContractResolver]
         User GetUserByName(string name);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [OperationContract(Name = "GetUserByNameAsync")]
+        [ApplyProxyDataContractResolver]
+        Task<User> GetUserByNameAsync(string name);
     }
 }

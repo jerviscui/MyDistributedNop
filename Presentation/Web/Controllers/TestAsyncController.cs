@@ -4,14 +4,37 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Core.Data;
+using Web.Framework;
+using WebServices.Interface;
 
 namespace Web.Controllers
 {
-    public class TestAsyncController : AsyncController
+    public class TestAsyncController : BaseAsyncController
     {
-        // GET: TestAsync
-        public ActionResult Index()
+        private readonly IAddressService _addressService;
+        private readonly IUserService _userWcfService;
+
+        private readonly DataService.Interface.IUserService _userService;
+
+        #region Ctor
+        /// <summary>
+        /// 初始化 <see cref="T:System.Web.Mvc.AsyncController"/> 类的新实例。
+        /// </summary>
+        public TestAsyncController(IWorkContext workContext, IAddressService addressService, IUserService userWcfService, DataService.Interface.IUserService userService) : base(workContext)
         {
+            _addressService = addressService;
+            _userWcfService = userWcfService;
+            _userService = userService;
+        }
+        #endregion
+
+        // GET: TestAsync
+        public async Task<ActionResult> Index()
+        {
+            var user = await _userService.GetUserByNameAsync("xiaoming");
+            ViewBag.User = user;
+
             return View();
         }
 
@@ -24,6 +47,16 @@ namespace Web.Controllers
             ViewBag.Count = count;
 
             return View("Index");
+        }
+
+        public async Task<ActionResult> AsyncWcf()
+        {
+            var addresses = await _addressService.GetAllAddressesAsync();
+
+            var user = await _userWcfService.GetUserByNameAsync("xiaoming");
+            ViewBag.User = user.UserName;
+
+            return View(addresses);
         }
     }
 }

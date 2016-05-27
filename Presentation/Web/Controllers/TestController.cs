@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Core.Data;
 using DataService.Interface;
 
 namespace Web.Controllers
 {
-    public class TestController : Controller
+    public class TestController : BaseController
     {
         private readonly IUserService _userService;
 
         /// <summary>
         /// 初始化 <see cref="T:System.Web.Mvc.Controller"/> 类的新实例。
         /// </summary>
-        public TestController(IUserService userService)
+        public TestController(IWorkContext workContext, IUserService userService) : base(workContext)
         {
             _userService = userService;
         }

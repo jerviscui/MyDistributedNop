@@ -1,0 +1,14 @@
+﻿@model IList<Core.Domain.Address>
+
+@{
+    ViewBag.Title = "AsyncWcf";
+}
+
+<h2>AsyncWcf</h2>
+@foreach (var item in Model)
+{
+    <h2>@item.City</h2>
+}
+
+<br/>
+<h2>@ViewBag.User</h2>

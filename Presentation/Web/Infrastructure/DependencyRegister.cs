@@ -52,11 +52,11 @@ namespace Web.Infrastructure
             //create a channel factory manager
             builder.Register(context => new ChannelFactoryManager()).SingleInstance();
             builder.Register(context => context.Resolve<ChannelFactoryManager>().CreateChannel<IAddressService>())
-                .As<IAddressService>()
-                .UseWcfSafeRelease();
+                .As<IAddressService>().UseWcfSafeRelease();
             builder.Register(context => context.Resolve<ChannelFactoryManager>().CreateChannel<IUserService>())
-                .As<IUserService>()
-                .UseWcfSafeRelease();
+                .As<IUserService>().UseWcfSafeRelease();
+            builder.Register(context => context.Resolve<ChannelFactoryManager>().CreateChannel<ICustomerService>())
+                .As<ICustomerService>().UseWcfSafeRelease();
 
             builder.RegisterControllers(Assembly.GetAssembly(typeof (MvcApplication)));
         }

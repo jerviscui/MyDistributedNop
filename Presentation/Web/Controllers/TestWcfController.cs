@@ -6,7 +6,7 @@ using WebServices.Proxy;
 
 namespace Web.Controllers
 {
-    public class TestWcfController : Controller
+    public class TestWcfController : BaseController
     {
         private readonly IAddressService _addressService;
         private readonly IUserService _userService;
@@ -14,7 +14,7 @@ namespace Web.Controllers
         /// <summary>
         /// 初始化 <see cref="T:System.Web.Mvc.Controller"/> 类的新实例。
         /// </summary>
-        public TestWcfController(IAddressService addressService, IUserService userService)
+        public TestWcfController(IWorkContext workContext, IAddressService addressService, IUserService userService) : base(workContext)
         {
             _addressService = addressService;
             _userService = userService;

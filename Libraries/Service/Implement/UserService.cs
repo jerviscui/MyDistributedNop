@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using Core;
 using Core.Domain;
 using DataService.Interface;
@@ -30,6 +32,17 @@ namespace DataService.Implement
         public User GetUserByName(string name)
         {
             return _userRepository.Table.FirstOrDefault(o => o.UserName.Equals(name));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<User> GetUserByNameAsync(string name)
+        {
+            var user = await _userRepository.Table.FirstOrDefaultAsync(o => o.UserName.Equals(name));
+            return user;
         }
     }
 }

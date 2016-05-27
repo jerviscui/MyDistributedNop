@@ -4,6 +4,8 @@ using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Threading;
+using System.Threading.Tasks;
 using Core;
 using Core.Domain;
 using Data;
@@ -56,6 +58,19 @@ namespace WebServices.Implementation
             //    }
             //}
 
+            return user;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<User> GetUserByNameAsync(string name)
+        {
+            Console.WriteLine("GetUserByNameAsync thread: {0}, {1}", Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.Name);
+            var user = await _userRepository.Table.FirstOrDefaultAsync(o => o.UserName.Equals(name));
+            Console.WriteLine("GetUserByNameAsync return thread: {0}, {1}", Thread.CurrentThread.ManagedThreadId, Thread.CurrentThread.Name);
             return user;
         }
     }
